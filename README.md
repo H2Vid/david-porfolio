@@ -34,3 +34,79 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+Personal Portfolio
+
+Personal portfolio website built to showcase my work and experience as a Web Developer & Web Designer, with a focus on frontend development and UI/UX design.   
+
+This project is currently under development.
+
+About
+
+This portfolio is designed to showcase:
+
+Personal introduction and background
+Frontend development skills and technologies
+UI/UX design skills and design process
+Selected projects and case studies
+Experience and contributions
+Contact information
+Tech Stack
+Next.js 16
+React
+JavaScript / JSX
+Tailwind CSS
+HTML
+CSS
+Project Structure
+src/
+├── app/
+│ ├── layout.js
+│ ├── page.js
+│ └── globals.css
+│
+└── components/
+└── layout/
+└── Navbar.jsx
+
+The project uses the Next.js App Router.
+
+Project detail pages will use dynamic routes:
+
+/projects/[slug]
+
+For example:
+
+/projects/e-commerce-platform
+/projects/finance-dashboard
+
+Development Status
+
+🚧 In Development
+
+Current progress:
+
+Project setup
+Next.js App Router setup
+Root layout
+Initial Navbar component
+Tailwind CSS setup
+Landing page sections
+Project listing
+Project detail / case study pages
+Experience section
+Contact section
+Responsive design
+Performance optimization
+Accessibility review
+Testing
+Deployment
+Goals
+
+The main goal of this project is not only to create a personal portfolio, but also to practice building a modern web application with a clear development process and maintainable architecture.
+
+The project will be developed progressively, from information architecture and UI/UX to implementation, testing, performance optimization, and deployment.
+
+License
+
+This project is a personal portfolio project.
