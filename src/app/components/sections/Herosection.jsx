@@ -1,8 +1,11 @@
+"use client";
 import { CometCard } from "@/app/components/ui/comet-card";
 import { EncryptedText } from "../ui/encrypted-text";
 import { MoveUpRight } from "lucide-react";
 
 import Link from "next/link";
+import { useState } from "react";
+import { Terminal } from "../ui/terminal";
 
 const contactLinks = [
   {
@@ -24,14 +27,16 @@ const contactLinks = [
 ];
 
 export default function Herosection() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <section
       id="home"
-      className="mx-auto flex w-[90%] flex-col items-center justify-center pt-20 md:h-screen md:pt-24 md:text-[#111111] dark:text-[#f1f1f1]"
+      className="mx-auto flex w-[90%] flex-col items-center justify-center pt-24 md:h-screen md:pt-24 md:text-[#111111] dark:text-[#f1f1f1]"
     >
       <div className="flex h-full w-full flex-col space-y-8 md:flex-row">
         <div className="flex h-full w-full flex-col justify-center space-y-5">
-          <div className="flex h-auto w-full items-center gap-4 px-4">
+          <div className="flex h-auto items-center gap-4 px-4">
             <span className="relative flex size-2.5">
               <span className="absolute inset-0 animate-ping rounded-full bg-green-400/60" />
               <span className="relative size-2.5 rounded-full bg-green-500 shadow-[0_0_8px_2px_rgba(34,197,94,0.6)]" />
@@ -57,7 +62,7 @@ export default function Herosection() {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center space-y-5">
+          <div className="flex h-40 flex-col justify-center space-y-5 md:h-80">
             <h1 className="text-center font-clash text-[clamp(4rem,11vw,10rem)] leading-[0.8] font-bold tracking-[-0.04em] whitespace-nowrap sm:text-left">
               <EncryptedText text="DAVID" revealDelayMs={50} />
             </h1>
@@ -67,7 +72,10 @@ export default function Herosection() {
             </h1>
           </div>
           <div>
-            <button className="flex items-center gap-2 rounded-md bg-gray-900 px-4 py-2 text-[#f1f1f1f1] transition-all duration-300 hover:bg-gray-800 dark:bg-gray-50 dark:text-[#111111] dark:hover:bg-gray-200">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="flex items-center gap-2 rounded-md bg-[#111111] px-4 py-2 text-[#f1f1f1f1] transition-all duration-300 hover:bg-gray-900 dark:bg-gray-50 dark:text-[#111111] dark:hover:bg-gray-200"
+            >
               More About me <MoveUpRight />
             </button>
           </div>
@@ -85,6 +93,59 @@ export default function Herosection() {
           </CometCard>
         </div>
       </div>
+      {/* dialog pop up */}
+      {isOpen && (
+        <div className="fixed z-10 h-full w-full p-10 md:p-20">
+          <Terminal
+            commands={["about", "skills", "experience"]}
+            outputs={{
+              0: [
+                "",
+                "David Sitompul",
+                "Web Developer & Web Designer",
+                "",
+                "Building responsive and user-friendly websites.",
+                "",
+                "I have worked on 10+ real-world websites,",
+                "primarily company profile and business websites.",
+                "",
+                "Currently growing into a Software Engineer,",
+                "exploring modern frontend technologies and",
+                "building beyond the traditional WordPress ecosystem.",
+              ],
+              1: [
+                "",
+                "Frontend:",
+                "→ HTML / CSS",
+                "→ JavaScript",
+                "→ React",
+                "→ Next.js",
+                "→ Tailwind CSS",
+                "",
+                "Backend:",
+                "→ PHP",
+                "→ Basic API integration",
+                "",
+                "CMS:",
+                "→ WordPress",
+              ],
+              2: [
+                "",
+                "10+ real-world websites",
+                "",
+                "→ Company Profile",
+                "→ Business Websites",
+                "→ WordPress Development",
+                "→ UI Implementation",
+                "→ Website Optimization",
+              ],
+            }}
+            typingSpeed={45}
+            delayBetweenCommands={1000}
+            onExit={() => setIsOpen(false)}
+          />
+        </div>
+      )}
     </section>
   );
 }
