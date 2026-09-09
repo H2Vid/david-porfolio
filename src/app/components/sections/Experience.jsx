@@ -32,8 +32,7 @@ export default function Experience() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
-        const NAVBAR_HEIGHT = 110;
-        const PROGRESS_HEIGHT = 1;
+        const NAVBAR_HEIGHT = 90;
         const PROGRESS_GAP = 20;
 
         const getHeaderHeight = () => {
@@ -197,8 +196,15 @@ export default function Experience() {
       {/* =========================================================
           DESKTOP EXPERIENCE
           ========================================================= */}
-      <div ref={experienceRef} className="relative z-10 hidden md:block">
-        <div ref={trackRef} className="flex w-max gap-6 px-6 md:px-10">
+      <div
+        ref={experienceRef}
+        className="relative z-10 hidden h-full overflow-hidden md:block"
+      >
+        <p className="fixed top-1/3 left-0 z-0 w-full -translate-y-1/2 text-[16vw] leading-none font-bold whitespace-nowrap text-gray-500">
+          EXPERIENCE
+        </p>
+
+        <div ref={trackRef} className="flex w-max gap-6 p-10 px-6 md:px-10">
           {experiences.map((experience) => (
             <ExperienceCard key={experience.id} experience={experience} />
           ))}
