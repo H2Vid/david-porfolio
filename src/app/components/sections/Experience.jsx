@@ -32,7 +32,8 @@ export default function Experience() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
-        const NAVBAR_HEIGHT = 90;
+        const NAVBAR_HEIGHT = 110;
+        const PROGRESS_HEIGHT = 1;
         const PROGRESS_GAP = 20;
 
         const getHeaderHeight = () => {
@@ -149,10 +150,10 @@ export default function Experience() {
           Tetap berada di belakang ketika section di-pin oleh GSAP.
           ========================================================= */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
+        className="pointer-events-none absolute inset-0 z-0 flex items-center overflow-hidden"
         aria-hidden="true"
       >
-        <span className="text-[20vw] leading-none font-black tracking-[-0.09em] whitespace-nowrap text-black/[0.04] uppercase dark:text-white/[0.035]">
+        <span className="text-[14.6vw] leading-none font-black whitespace-nowrap text-black/30 uppercase dark:text-white/20">
           Experiences
         </span>
       </div>
@@ -196,15 +197,8 @@ export default function Experience() {
       {/* =========================================================
           DESKTOP EXPERIENCE
           ========================================================= */}
-      <div
-        ref={experienceRef}
-        className="relative z-10 hidden h-full overflow-hidden md:block"
-      >
-        <p className="fixed top-1/3 left-0 z-0 w-full -translate-y-1/2 text-[16vw] leading-none font-bold whitespace-nowrap text-gray-500">
-          EXPERIENCE
-        </p>
-
-        <div ref={trackRef} className="flex w-max gap-6 p-10 px-6 md:px-10">
+      <div ref={experienceRef} className="relative z-10 hidden md:block">
+        <div ref={trackRef} className="flex w-max gap-6 px-6 md:px-10">
           {experiences.map((experience) => (
             <ExperienceCard key={experience.id} experience={experience} />
           ))}
