@@ -1,9 +1,10 @@
 @import "tailwindcss";
-
+@theme {
+  --font-clash: "Clash Display", sans-serif;
+}
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
 @source "../src";
 
 :root {
@@ -167,3 +168,7 @@ a {
     @apply font-sans;
   }
 }
+/*
+* {
+  outline: 1px solid red;
+} */

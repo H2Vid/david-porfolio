@@ -7,6 +7,8 @@ export const projects = [
     slug: "curtain-bali",
     title: "Curtain Bali",
     type: "real-project",
+    categories: ["Web"],
+
     image: "/profile.png",
 
     description:
@@ -31,6 +33,8 @@ export const projects = [
     slug: "project-two",
     title: "Project Two",
     type: "real-project",
+    categories: ["Web"],
+
     image: "/profile.png",
 
     description:
@@ -55,6 +59,8 @@ export const projects = [
     slug: "project-three",
     title: "Project Three",
     type: "real-project",
+    categories: ["Web", "Design"],
+
     image: "/profile.png",
 
     description:
@@ -79,6 +85,8 @@ export const projects = [
     slug: "project-four",
     title: "Project Four",
     type: "real-project",
+    categories: ["Web", "Design"],
+
     image: "/profile.png",
 
     description:
@@ -103,6 +111,8 @@ export const projects = [
     slug: "project-five",
     title: "Project Five",
     type: "real-project",
+    categories: ["Web"],
+
     image: "/profile.png",
 
     description:
@@ -127,6 +137,8 @@ export const projects = [
     slug: "project-six",
     title: "Project Six",
     type: "real-project",
+    categories: ["Web", "Design"],
+
     image: "/profile.png",
 
     description:
@@ -151,6 +163,8 @@ export const projects = [
     slug: "project-seven",
     title: "Project Seven",
     type: "real-project",
+    categories: ["Web"],
+
     image: "/profile.png",
 
     description:
@@ -179,6 +193,8 @@ export const projects = [
     slug: "case-study-one",
     title: "Case Study One",
     type: "case-study",
+    categories: ["Case Studies", "Web", "Design"],
+
     image: "/profile.png",
 
     description:
@@ -203,6 +219,8 @@ export const projects = [
     slug: "case-study-two",
     title: "Case Study Two",
     type: "case-study",
+    categories: ["Case Studies", "Web", "Design"],
+
     image: "/profile.png",
 
     description:
@@ -227,6 +245,8 @@ export const projects = [
     slug: "case-study-three",
     title: "Case Study Three",
     type: "case-study",
+    categories: ["Case Studies", "Web"],
+
     image: "/profile.png",
 
     description:

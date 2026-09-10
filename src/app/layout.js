@@ -1,14 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
-import Navbar from "./components/layout/navbar"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+import Navbar from "./components/layout/Navbar"
+const plusJakartaSans = Plus_Jakarta_Sans({
+  weight: "400",
   subsets: ["latin"],
 })
 
@@ -19,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en' className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang='en' className={`${plusJakartaSans.className}`}>
       <body>
         <Navbar />
         {children}
