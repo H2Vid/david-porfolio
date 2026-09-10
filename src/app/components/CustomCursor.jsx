@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 export default function CustomCursor() {
   const ringRef = useRef(null);
   const dotRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const ring = ringRef.current;
@@ -14,6 +15,7 @@ export default function CustomCursor() {
     if (!ring || !dot) return;
 
     const moveCursor = (e) => {
+      setIsVisible(true);
       // Dot mengikuti mouse lebih cepat
       gsap.to(dot, {
         x: e.clientX,
@@ -43,13 +45,13 @@ export default function CustomCursor() {
       {/* Ring */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 z-9998 hidden size-12 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-full border-2 border-dotted border-white mix-blend-difference md:block"
+        className={`${isVisible ? "opacity-100" : "opacity-0"} fixed top-0 left-0 z-9998 hidden size-12 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-full border-2 border-dotted border-white mix-blend-difference transition-opacity duration-200 md:block`}
       />
 
       {/* Dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 z-9999 hidden size-2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-full bg-white mix-blend-difference md:block"
+        className={`${isVisible ? "opacity-100" : "opacity-0"} fixed top-0 left-0 z-9999 hidden size-2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-full bg-white mix-blend-difference transition-opacity duration-200 md:block`}
       />
     </>
   );

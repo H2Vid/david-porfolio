@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${plusJakartaSans.className}`}>
+    <html lang="en" className={`${plusJakartaSans.className} scroll-smooth`}>
       <body className="cursor-none">
         <CustomCursor />
 
