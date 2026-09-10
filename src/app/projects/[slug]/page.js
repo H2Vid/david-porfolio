@@ -41,31 +41,29 @@ export default async function ProjectDetailPage({ params }) {
   const projectNumber = String(projectIndex + 1).padStart(2, "0");
 
   return (
-    <main className="min-h-screen">
+    <div className="p-20">
       {/* =====================================================
           BACK / NAVIGATION
       ====================================================== */}
-      <section className="px-6 pt-20 md:px-10 lg:px-16">
-        <div className="mx-auto max-w-7xl">
-          <Link
-            href="/projects"
-            className="group inline-flex items-center gap-2 text-sm text-[#111111]/50 transition-colors duration-300 hover:text-[#111111] dark:text-[#f1f1f1]/50 dark:hover:text-[#f1f1f1]"
-          >
-            <ArrowLeft
-              size={16}
-              strokeWidth={1.5}
-              className="transition-transform duration-300 group-hover:-translate-x-1"
-            />
+      <div className="group mx-auto inline-flex max-w-7xl items-center gap-2 px-6 pt-5 text-sm text-[#111111]/50 transition-colors duration-300 hover:text-[#111111] md:px-10 lg:px-16 dark:text-[#f1f1f1]/50 dark:hover:text-[#f1f1f1]">
+        <Link
+          href="/projects"
+          className="flex items-center justify-center gap-2"
+        >
+          <ArrowLeft
+            size={16}
+            strokeWidth={1.5}
+            className="transition-transform duration-300 group-hover:-translate-x-1"
+          />
 
-            <span>Back to projects</span>
-          </Link>
-        </div>
-      </section>
+          <span>Back to projects</span>
+        </Link>
+      </div>
 
       {/* =====================================================
           PROJECT HERO
       ====================================================== */}
-      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-20 lg:px-16">
+      <section className="px-6 pt-16 pb-16 md:px-10 md:pt-24 md:pb-20 lg:px-16">
         <div className="mx-auto max-w-7xl">
           {/* Meta */}
           <div className="mb-8 flex items-center justify-between border-b border-[#111111]/15 pb-4 dark:border-[#f1f1f1]/15">
@@ -274,6 +272,6 @@ export default async function ProjectDetailPage({ params }) {
           </div>
         </Link>
       </section>
-    </main>
+    </div>
   );
 }
