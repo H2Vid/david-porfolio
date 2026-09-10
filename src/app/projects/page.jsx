@@ -14,9 +14,8 @@ export default function ProjectsPage() {
   const filteredProjects =
     activeCategory === "All"
       ? projects
-      : projects.filter(
-          (project) =>
-            project.category?.toLowerCase() === activeCategory.toLowerCase(),
+      : projects.filter((project) =>
+          project.categories?.includes(activeCategory),
         );
 
   return (
