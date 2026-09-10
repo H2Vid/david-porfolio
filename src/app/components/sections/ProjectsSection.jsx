@@ -3,60 +3,82 @@
 import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "@/app/data/projects";
 import { MoveUpRight } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function ProjectsSection() {
   const sectionRef = useRef(null);
-  const projectRefs = useRef([]);
-  const imageRefs = useRef([]);
 
   const featuredProjects = projects
     .filter((project) => project.featured)
     .slice(0, 4);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        projectRefs.current,
-        {
-          y: 40,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        },
-      );
-    }, sectionRef);
+    const ctx = gsap.context(() => {}, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const handleMouseEnter = (index) => {
-    gsap.to(imageRefs.current[index], {
-      scale: 1.03,
-      duration: 0.8,
-      ease: "power3.out",
-    });
-  };
+  const handleMouseEnter = (card) => {
+    const arrow = card.querySelector("[data-arrow]");
+    const digits = card.querySelectorAll("[data-digit-track]");
 
-  const handleMouseLeave = (index) => {
-    gsap.to(imageRefs.current[index], {
-      scale: 1,
-      duration: 0.8,
-      ease: "power3.out",
+    if (arrow) {
+      gsap.killTweensOf(arrow);
+
+      const arrowTl = gsap.timeline();
+
+      arrowTl
+        // Keluar ke atas + fade
+        .to(arrow, {
+          x: 25,
+          y: -25,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.in",
+        })
+
+        // Pindahkan ke bawah dalam keadaan invisible
+        .set(arrow, {
+          x: -25,
+          y: 25,
+          opacity: 0,
+        })
+
+        // Masuk dari bawah ke posisi awal
+        .to(arrow, {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+    }
+
+    digits.forEach((track, index) => {
+      const digit = Number(track.dataset.digit);
+
+      gsap.killTweensOf(track);
+
+      const tl = gsap.timeline({
+        delay: index * 0.25,
+      });
+
+      tl.fromTo(
+        track,
+        {
+          yPercent: 0,
+        },
+        {
+          yPercent: -50,
+          duration: 0.55,
+          ease: "power2.inOut",
+        },
+      ).to(track, {
+        yPercent: 0,
+        duration: 0.55,
+        ease: "power2.out",
+      });
     });
   };
 
@@ -93,14 +115,9 @@ export default function ProjectsSection() {
               <Link
                 key={project.slug}
                 href={`/projects/${project.slug}`}
-                ref={(el) => {
-                  projectRefs.current[index] = el;
-                }}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={() => handleMouseLeave(index)}
                 className="group block"
+                onMouseEnter={(event) => handleMouseEnter(event.currentTarget)}
               >
-                {/* Project */}
                 <div className="overflow-hidden border border-[#111111] dark:border-[#f1f1f1]">
                   {/* Title */}
                   <div className="flex h-12 items-center justify-center border-b border-[#111111] px-4 md:h-14 dark:border-[#f1f1f1]">
@@ -112,27 +129,56 @@ export default function ProjectsSection() {
                   {/* Image */}
                   <div className="aspect-[4/3] overflow-hidden bg-[#f1f1f1] dark:bg-[#111111]">
                     <img
-                      ref={(el) => {
-                        imageRefs.current[index] = el;
-                      }}
                       src={project.image}
                       alt={project.title}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover grayscale transition-[filter] duration-700 ease-out group-hover:grayscale-0"
                     />
                   </div>
 
                   {/* Footer */}
                   <div className="flex h-12 items-center justify-between border-t border-[#111111] px-3 md:h-14 md:px-4 dark:border-[#f1f1f1]">
-                    <span className="text-xs">
+                    {/* DEV NUMBER */}
+                    <span className="flex items-center text-xs">
                       DEV.
-                      <span className="text-blue-600">
-                        {String(index + 1).padStart(3, "0")}
+                      <span className="ml-1 flex h-[1em] overflow-hidden text-blue-600">
+                        {number.split("").map((digit, digitIndex) => {
+                          return (
+                            <span
+                              key={digitIndex}
+                              className="relative h-[1em] w-[0.65em] overflow-hidden"
+                            >
+                              <span
+                                data-digit-track
+                                data-digit={digit}
+                                className="absolute top-0 left-0 flex flex-col"
+                              >
+                                {/* Digit asli */}
+                                <span className="flex h-[1em] shrink-0 items-center justify-center">
+                                  {digit}
+                                </span>
+
+                                {/* Clone untuk rolling */}
+                                <span className="flex h-[1em] shrink-0 items-center justify-center">
+                                  {digit}
+                                </span>
+                              </span>
+                            </span>
+                          );
+                        })}
                       </span>
                     </span>
 
+                    {/* VIEW */}
                     <span className="flex items-center gap-3 rounded-full bg-[#111111] px-4 py-1.5 text-[14px] tracking-wide text-[#f1f1f1] uppercase transition-transform duration-300 group-hover:scale-105 dark:bg-[#f1f1f1] dark:text-[#111111]">
                       <span>View</span>
-                      <MoveUpRight size={16} />
+
+                      <span className="relative h-4 w-4 overflow-visible">
+                        <MoveUpRight
+                          data-arrow
+                          size={16}
+                          className="absolute inset-0 will-change-transform"
+                        />
+                      </span>
                     </span>
                   </div>
                 </div>
