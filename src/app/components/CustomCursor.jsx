@@ -43,13 +43,13 @@ export default function CustomCursor() {
       {/* Ring */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 z-[9998] size-12 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-full border-2 border-dotted border-white mix-blend-difference"
+        className="fixed top-0 left-0 z-9998 hidden size-12 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-full border-2 border-dotted border-white mix-blend-difference md:block"
       />
 
       {/* Dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 z-[9999] size-2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-full bg-white mix-blend-difference"
+        className="fixed top-0 left-0 z-9999 hidden size-2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-full bg-white mix-blend-difference md:block"
       />
     </>
   );
