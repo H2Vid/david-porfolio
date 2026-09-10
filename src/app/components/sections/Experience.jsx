@@ -259,7 +259,7 @@ export default function Experience() {
 
 function ExperienceCard({ experience }) {
   return (
-    <article className="flex w-full shrink-0 flex-col bg-[#111111] text-[#f1f1f1] transition-colors duration-500 md:h-[55opx] md:w-[900px] md:flex-row dark:bg-[#f1f1f1] dark:text-[#111111]">
+    <article className="flex w-full shrink-0 flex-col bg-[#111111] text-[#f1f1f1] transition-colors duration-500 md:h-[500px] md:w-[800px] md:flex-row dark:bg-[#f1f1f1] dark:text-[#111111]">
       <div className="flex h-1/2 w-full shrink-0 flex-col justify-between p-5 md:h-full md:w-[60%]">
         <div>
           <div className="mb-10 flex items-start justify-between gap-4">
