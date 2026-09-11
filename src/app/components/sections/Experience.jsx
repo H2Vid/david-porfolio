@@ -143,7 +143,11 @@ export default function Experience() {
   };
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
+    <section
+      id="experience"
+      ref={sectionRef}
+      className="relative min-h-screen overflow-hidden"
+    >
       {/* =========================================================
           BACKGROUND
           Tetap berada di belakang ketika section di-pin oleh GSAP.
