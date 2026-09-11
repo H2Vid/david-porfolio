@@ -88,7 +88,7 @@ export default function CardProjects({ project, index }) {
         </div>
 
         {/* Image */}
-        <div className="aspect-[4/3] overflow-hidden bg-[#f1f1f1] dark:bg-[#111111]">
+        <div className="aspect-4/3 overflow-hidden p-5 md:p-10">
           <img
             src={project.image}
             alt={project.title}
