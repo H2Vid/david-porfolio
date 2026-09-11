@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
@@ -19,7 +19,9 @@ export default function Navbar() {
   const [active, setActive] = useState("Home");
   const [showNav, setShowNav] = useState(true);
 
+  // =========================================================
   // Show navbar when scrolling up
+  // =========================================================
   useEffect(() => {
     let lastScrollY = window.scrollY;
 
@@ -38,41 +40,20 @@ export default function Navbar() {
       lastScrollY = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Scroll to hash after navigating from another page
-  useEffect(() => {
-    if (pathname !== "/") return;
-
-    const hash = window.location.hash;
-
-    if (!hash) return;
-
-    const scrollToSection = () => {
-      const element = document.getElementById(hash.substring(1));
-
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    };
-
-    // Tunggu sampai DOM homepage selesai dirender
-    const timeout = setTimeout(scrollToSection, 100);
-
-    return () => clearTimeout(timeout);
-  }, [pathname]);
-
+  // =========================================================
   // Detect active section
+  // =========================================================
   useEffect(() => {
-    // Jangan menjalankan section observer di halaman projects
+    // Jika bukan homepage, Projects menjadi active
     if (pathname !== "/") {
       setActive("Projects");
       return;
@@ -108,12 +89,40 @@ export default function Navbar() {
       },
     );
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
 
     return () => {
       observer.disconnect();
     };
   }, [pathname]);
+
+  // =========================================================
+  // Navigation with PageTransition
+  // =========================================================
+  const handleNavigation = (item) => {
+    setActive(item.label);
+    setIsOpen(false);
+
+    // PageTransition akan menangani:
+    // - curtain animation
+    // - page navigation
+    // - section navigation
+    // - hash navigation
+    if (window.__pageTransition) {
+      window.__pageTransition(item.href);
+      return;
+    }
+
+    // Fallback jika PageTransition belum tersedia
+    if (item.section === "projects") {
+      window.location.href = "/projects";
+      return;
+    }
+
+    window.location.href = item.href;
+  };
 
   return (
     <header
@@ -136,6 +145,9 @@ export default function Navbar() {
           )}
         </button>
 
+        {/* =====================================================
+            Navigation
+            ===================================================== */}
         <div
           className={`grid transition-[grid-template-rows,opacity] duration-300 md:block ${
             isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
@@ -147,29 +159,27 @@ export default function Navbar() {
                 const isActive = active === item.label;
 
                 return (
-                  <Link
+                  <button
                     key={item.label}
-                    href={item.href}
-                    onClick={() => {
-                      setActive(item.label);
-                      setIsOpen(false);
-                    }}
+                    type="button"
+                    onClick={() => handleNavigation(item)}
                     className={`group relative rounded-xl border px-4 py-2.5 text-sm font-medium transition-all duration-300 md:rounded-full md:px-4 md:py-2 ${
                       isActive
-                        ? "border-black/20 text-[#1e1e1e] dark:border-white/20 dark:text-[#f1f1f1]"
-                        : "border-transparent hover:border-black/15 hover:text-[#1e1e1e] dark:hover:border-white/15 dark:hover:text-[#f1f1f1]"
-                    }`}
+                        ? `border-black/20 text-[#1e1e1e] dark:border-white/20 dark:text-[#f1f1f1]`
+                        : `border-transparent hover:border-black/15 hover:text-[#1e1e1e] dark:hover:border-white/15 dark:hover:text-[#f1f1f1]`
+                    } `}
                   >
                     {item.label}
 
+                    {/* Active Indicator */}
                     <span
                       className={`absolute bottom-1 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-current transition-all duration-300 ${
                         isActive
                           ? "w-3 opacity-100"
-                          : "w-0 opacity-0 group-hover:w-3 group-hover:opacity-100"
-                      }`}
+                          : `w-0 opacity-0 group-hover:w-3 group-hover:opacity-100`
+                      } `}
                     />
-                  </Link>
+                  </button>
                 );
               })}
             </div>

@@ -2,6 +2,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/layout/Navbar";
 import CustomCursor from "./components/CustomCursor";
+import PageTransition from "./components/PageTransition";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   weight: "400",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${plusJakartaSans.className} scroll-smooth`}>
       <body className="cursor-none">
         <CustomCursor />
+        <PageTransition />
         <Navbar />
         {children}
       </body>
