@@ -2,32 +2,65 @@
 import { CometCard } from "@/app/components/ui/comet-card";
 import { EncryptedText } from "../ui/encrypted-text";
 import { MoveUpRight } from "lucide-react";
-
 import Link from "next/link";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 import { Terminal } from "../ui/terminal";
 
 const contactLinks = [
   {
     name: "GitHub",
-    href: "https://github.com/username",
+    href: "https://github.com/H2Vid",
     icon: "/icons/github.svg",
   },
 
   {
     name: "WhatsApp",
-    href: "https://wa.me/628xxxxxxxxxx",
+    href: "https://wa.me/6289678391472",
     icon: "/icons/whatsapp.svg",
   },
   {
     name: "Email",
-    href: "mailto:your@email.com",
+    href: "mailto:dstmpl17@gmail.com",
     icon: "/icons/gmail.svg",
   },
 ];
 
 export default function Herosection() {
   const [isOpen, setIsOpen] = useState(false);
+  const heroTextRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "restart none restart none",
+        },
+      });
+
+      tl.from(".hero-david", {
+        x: -300,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      }).from(".hero-frontend", {
+        x: 300,
+        opacity: 0,
+        duration: 1.25,
+        ease: "power3.out",
+      });
+    }, heroTextRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
@@ -62,15 +95,26 @@ export default function Herosection() {
             </div>
           </div>
 
-          <div className="flex h-40 flex-col justify-center space-y-5 md:h-80">
-            <h1 className="text-center font-clash text-[clamp(4rem,11vw,10rem)] leading-[0.8] font-bold tracking-[-0.04em] whitespace-nowrap sm:text-left">
-              <EncryptedText text="DAVID" revealDelayMs={50} />
-            </h1>
+          <div
+            ref={heroTextRef}
+            className="flex h-40 flex-col justify-center space-y-5 overflow-hidden md:h-80"
+          >
+            <h2 className="hero-david text-center font-clash text-[clamp(4rem,11vw,10rem)] leading-[0.8] font-bold tracking-[-0.04em] whitespace-nowrap sm:text-left">
+              DAVID
+            </h2>
 
-            <h1 className="text-center font-clash text-[clamp(4rem,11vw,10rem)] leading-[0.8] font-bold tracking-[-0.04em] whitespace-nowrap sm:text-left">
-              <EncryptedText text="SITOMPUL" revealDelayMs={50} />
-            </h1>
+            <h2 className="hero-frontend text-center font-clash text-[clamp(4rem,11vw,10rem)] leading-[0.8] font-bold tracking-[-0.04em] whitespace-nowrap sm:text-left">
+              SITOMPUL
+            </h2>
           </div>
+
+          <h4 className="h-6 max-w-full text-center font-clash text-[clamp(0.75rem,3.5vw,1.125rem)] leading-tight font-semibold tracking-[-0.02em] md:text-left">
+            <EncryptedText
+              text="Frontend || Web Developer & Web Design"
+              revealDelayMs={10}
+            />
+          </h4>
+
           <div>
             <button
               onClick={() => setIsOpen(true)}
@@ -81,13 +125,13 @@ export default function Herosection() {
           </div>
         </div>
 
-        <div className="flex h-full w-full items-center justify-center md:w-[50%]">
-          <CometCard rotateDepth={15} translateDepth={10}>
-            <div className="overflow-hidden rounded-3xl md:h-140 md:w-90">
+        <div className="flex w-full items-center justify-end md:w-[70%]">
+          <CometCard rotateDepth={10} translateDepth={5}>
+            <div className="overflow-hidden rounded-3xl md:h-120 md:w-100">
               <img
                 src="/profile.png"
                 alt="Project"
-                className="h-full w-full object-cover"
+                className="h-full w-full rotate-y-180 object-cover hover:grayscale-0 md:grayscale-25"
               />
             </div>
           </CometCard>
