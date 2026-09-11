@@ -122,7 +122,7 @@ export default function ContactSection() {
           <div className="overflow-hidden">
             <h2
               ref={titleRef}
-              className="max-w-[1100px] text-[clamp(3.5rem,9vw,9rem)] leading-[0.88] font-medium tracking-[-0.065em]"
+              className="max-w-275 text-[clamp(3.5rem,9vw,9rem)] leading-[0.88] font-medium tracking-[-0.065em]"
             >
               Let's Work
               <br />
@@ -150,11 +150,11 @@ export default function ContactSection() {
               </p>
 
               <a
-                href="mailto:hello@example.com"
+                href="mailto:dstmpl17@gmail.com"
                 className="group inline-flex items-center gap-3 text-lg font-medium tracking-[-0.02em] sm:text-xl md:text-2xl"
               >
                 <span className="border-b border-neutral-300 pb-1 transition-colors duration-300 group-hover:border-neutral-950 dark:border-neutral-700 dark:group-hover:border-white">
-                  hello@example.com
+                  dstmpl17@gmail.com
                 </span>
 
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -169,14 +169,7 @@ export default function ContactSection() {
               className="flex flex-wrap gap-x-7 gap-y-3 text-sm text-neutral-500 dark:text-neutral-400"
             >
               <a
-                href="/resume"
-                className="transition-colors duration-300 hover:text-neutral-950 dark:hover:text-white"
-              >
-                Resume
-              </a>
-
-              <a
-                href="https://github.com"
+                href="https://github.com/H2Vid"
                 target="_blank"
                 rel="noreferrer"
                 className="transition-colors duration-300 hover:text-neutral-950 dark:hover:text-white"
@@ -185,29 +178,29 @@ export default function ContactSection() {
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://wa.me/6289678391472"
                 target="_blank"
                 rel="noreferrer"
                 className="transition-colors duration-300 hover:text-neutral-950 dark:hover:text-white"
               >
-                Linkedin
+                Whatsapp
               </a>
 
               <a
-                href="https://instagram.com"
+                href="mailto:dstmpl17@gmail.com"
                 target="_blank"
                 rel="noreferrer"
                 className="transition-colors duration-300 hover:text-neutral-950 dark:hover:text-white"
               >
-                Instagram
+                Email
               </a>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="mt-20 flex flex-col gap-2 border-t border-neutral-200 pt-5 text-[10px] tracking-[0.15em] text-neutral-400 uppercase sm:flex-row sm:items-center sm:justify-between dark:border-neutral-800 dark:text-neutral-600">
-          <span>© {new Date().getFullYear()} Your Name</span>
+        <div className="mt-20 flex flex-col gap-2 border-t border-neutral-200 pt-5 text-[10px] tracking-[0.15em] text-neutral-400 lowercase sm:flex-row sm:items-center sm:justify-between dark:border-neutral-800 dark:text-neutral-600">
+          <span>© {new Date().getFullYear()} its_viids</span>
 
           <span>All rights reserved.</span>
         </div>
