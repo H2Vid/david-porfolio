@@ -65,10 +65,10 @@ export default function Herosection() {
   return (
     <section
       id="home"
-      className="mx-auto flex w-[90%] flex-col items-center justify-center pt-24 md:h-screen md:pt-24 md:text-[#111111] dark:text-[#f1f1f1]"
+      className="mx-auto flex w-[90%] flex-col items-center justify-center pt-10 md:h-screen md:text-[#111111] dark:text-[#f1f1f1]"
     >
       <div className="flex h-full w-full flex-col space-y-8 md:flex-row">
-        <div className="flex h-full w-full flex-col justify-center space-y-5">
+        <div className="flex h-full w-full flex-col space-y-5">
           <div className="flex h-auto items-center gap-4 px-4">
             <span className="relative flex size-2.5">
               <span className="absolute inset-0 animate-ping rounded-full bg-green-400/60" />
@@ -125,7 +125,7 @@ export default function Herosection() {
           </div>
         </div>
 
-        <div className="flex w-full items-center justify-end md:w-[70%]">
+        <div className="flex w-full justify-end md:w-[70%]">
           <CometCard rotateDepth={10} translateDepth={5}>
             <div className="overflow-hidden rounded-3xl md:h-120 md:w-100">
               <img
