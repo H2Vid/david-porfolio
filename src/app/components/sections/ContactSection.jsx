@@ -19,7 +19,6 @@ export default function ContactSection() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      // Initial states
       gsap.set(titleRef.current, {
         y: 80,
         opacity: 0,
@@ -40,7 +39,6 @@ export default function ContactSection() {
         opacity: 0,
       });
 
-      // Main heading animation
       gsap.to(titleRef.current, {
         y: 0,
         opacity: 1,
@@ -53,7 +51,6 @@ export default function ContactSection() {
         },
       });
 
-      // Horizontal line
       gsap.to(lineRef.current, {
         scaleX: 1,
         duration: 1.2,
@@ -66,7 +63,6 @@ export default function ContactSection() {
         },
       });
 
-      // Content
       gsap.to(contentRef.current, {
         y: 0,
         opacity: 1,
@@ -80,7 +76,6 @@ export default function ContactSection() {
         },
       });
 
-      // Social links stagger
       gsap.to(linksRef.current?.children, {
         y: 0,
         opacity: 1,
@@ -108,11 +103,11 @@ export default function ContactSection() {
       <div className="mx-auto flex min-h-[85vh] w-full max-w-[1600px] flex-col justify-between px-6 py-16 sm:px-8 md:px-12 lg:px-16 lg:py-20">
         {/* Top label */}
         <div className="flex items-center justify-between">
-          <div className="text-[11px] font-medium tracking-[0.2em] text-neutral-500 uppercase dark:text-neutral-400">
+          <div className="text-[11px] font-medium tracking-[0.2em] text-neutral-700 uppercase dark:text-neutral-300">
             Contact
           </div>
 
-          <div className="hidden text-[11px] tracking-[0.18em] text-neutral-400 uppercase sm:block dark:text-neutral-500">
+          <div className="hidden text-[11px] font-medium tracking-[0.18em] text-neutral-600 uppercase sm:block dark:text-neutral-300">
             Get in touch
           </div>
         </div>
@@ -126,7 +121,7 @@ export default function ContactSection() {
             >
               Let's Work
               <br />
-              <span className="text-neutral-400 dark:text-neutral-600">
+              <span className="text-neutral-600 dark:text-neutral-300">
                 Together
               </span>
             </h2>
@@ -135,7 +130,7 @@ export default function ContactSection() {
           {/* Divider */}
           <div
             ref={lineRef}
-            className="mt-12 h-px w-full bg-neutral-200 dark:bg-neutral-800"
+            className="mt-12 h-px w-full bg-neutral-300 dark:bg-neutral-700"
           />
 
           {/* Bottom content */}
@@ -145,19 +140,22 @@ export default function ContactSection() {
           >
             {/* Email */}
             <div>
-              <p className="mb-3 text-[11px] tracking-[0.18em] text-neutral-400 uppercase dark:text-neutral-500">
+              <p className="mb-3 text-[11px] font-medium tracking-[0.18em] text-neutral-700 uppercase dark:text-neutral-300">
                 Have a project in mind?
               </p>
 
               <a
                 href="mailto:dstmpl17@gmail.com"
-                className="group inline-flex items-center gap-3 text-lg font-medium tracking-[-0.02em] sm:text-xl md:text-2xl"
+                className="group inline-flex items-center gap-3 text-lg font-medium tracking-[-0.02em] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-950 sm:text-xl md:text-2xl dark:focus-visible:outline-white"
               >
-                <span className="border-b border-neutral-300 pb-1 transition-colors duration-300 group-hover:border-neutral-950 dark:border-neutral-700 dark:group-hover:border-white">
+                <span className="border-b border-neutral-400 pb-1 transition-colors duration-300 group-hover:border-neutral-950 dark:border-neutral-600 dark:group-hover:border-white">
                   dstmpl17@gmail.com
                 </span>
 
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <span
+                  aria-hidden="true"
+                  className="inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                >
                   ↗
                 </span>
               </a>
@@ -166,13 +164,13 @@ export default function ContactSection() {
             {/* Social links */}
             <div
               ref={linksRef}
-              className="flex flex-wrap gap-x-7 gap-y-3 text-sm text-neutral-500 dark:text-neutral-400"
+              className="flex flex-wrap gap-x-7 gap-y-3 text-sm font-medium text-neutral-700 dark:text-neutral-300"
             >
               <a
                 href="https://github.com/H2Vid"
                 target="_blank"
                 rel="noreferrer"
-                className="transition-colors duration-300 hover:text-neutral-950 dark:hover:text-white"
+                className="transition-colors duration-300 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-950 dark:hover:text-white dark:focus-visible:outline-white"
               >
                 Github
               </a>
@@ -181,16 +179,14 @@ export default function ContactSection() {
                 href="https://wa.me/6289678391472"
                 target="_blank"
                 rel="noreferrer"
-                className="transition-colors duration-300 hover:text-neutral-950 dark:hover:text-white"
+                className="transition-colors duration-300 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-950 dark:hover:text-white dark:focus-visible:outline-white"
               >
                 Whatsapp
               </a>
 
               <a
                 href="mailto:dstmpl17@gmail.com"
-                target="_blank"
-                rel="noreferrer"
-                className="transition-colors duration-300 hover:text-neutral-950 dark:hover:text-white"
+                className="transition-colors duration-300 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-950 dark:hover:text-white dark:focus-visible:outline-white"
               >
                 Email
               </a>
@@ -199,7 +195,7 @@ export default function ContactSection() {
         </div>
 
         {/* Footer */}
-        <div className="mt-20 flex flex-col gap-2 border-t border-neutral-200 pt-5 text-[10px] tracking-[0.15em] text-neutral-400 lowercase sm:flex-row sm:items-center sm:justify-between dark:border-neutral-800 dark:text-neutral-600">
+        <div className="mt-20 flex flex-col gap-2 border-t border-neutral-300 pt-5 text-[10px] font-medium tracking-[0.15em] text-neutral-600 lowercase sm:flex-row sm:items-center sm:justify-between dark:border-neutral-700 dark:text-neutral-400">
           <span>© {new Date().getFullYear()} its_viids</span>
 
           <span>All rights reserved.</span>

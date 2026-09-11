@@ -108,12 +108,12 @@ export default function Herosection() {
             </h2>
           </div>
 
-          <h4 className="h-6 max-w-full text-center font-clash text-[clamp(0.75rem,3.5vw,1.125rem)] leading-tight font-semibold tracking-[-0.02em] md:text-left">
+          <h3 className="h-6 max-w-full text-center font-clash text-[clamp(0.75rem,3.5vw,1.125rem)] leading-tight font-semibold tracking-[-0.02em] md:text-left">
             <EncryptedText
               text="Frontend || Web Developer & Web Design"
               revealDelayMs={10}
             />
-          </h4>
+          </h3>
 
           <div>
             <button
