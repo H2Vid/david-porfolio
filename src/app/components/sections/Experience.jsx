@@ -33,7 +33,6 @@ export default function Experience() {
 
       mm.add("(min-width: 768px)", () => {
         const NAVBAR_HEIGHT = 110;
-        const PROGRESS_HEIGHT = 1;
         const PROGRESS_GAP = 20;
 
         const getHeaderHeight = () => {
@@ -205,10 +204,10 @@ export default function Experience() {
         </div>
 
         <div className="mx-auto mt-5 w-full max-w-7xl px-6 md:px-10">
-          <div className="relative h-[3px] w-full overflow-hidden bg-white">
+          <div className="relative h-0.75 w-full overflow-hidden bg-black/10 dark:bg-black/10">
             <div
               ref={progressRef}
-              className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-current"
+              className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-[#111111] dark:bg-[#f1f1f1]"
             />
           </div>
         </div>
@@ -259,8 +258,8 @@ export default function Experience() {
 
 function ExperienceCard({ experience }) {
   return (
-    <article className="flex w-full shrink-0 flex-col bg-[#111111] text-[#f1f1f1] transition-colors duration-500 md:h-[500px] md:w-[800px] md:flex-row dark:bg-[#f1f1f1] dark:text-[#111111]">
-      <div className="flex h-1/2 w-full shrink-0 flex-col justify-between p-5 md:h-full md:w-[60%]">
+    <article className="flex w-full flex-col bg-[#111111] text-[#f1f1f1] transition-colors duration-500 md:h-125 md:w-270 md:flex-row dark:bg-[#f1f1f1] dark:text-[#111111]">
+      <div className="flex h-1/2 w-full shrink-0 flex-col justify-between p-5 md:h-full md:w-[55%]">
         <div>
           <div className="mb-10 flex items-start justify-between gap-4">
             <span className="text-sm opacity-50">{experience.period}</span>
@@ -276,7 +275,7 @@ function ExperienceCard({ experience }) {
 
           <p className="mt-2 text-lg opacity-70">{experience.company}</p>
 
-          <p className="mt-8 max-w-md text-sm leading-relaxed opacity-60 md:text-base">
+          <p className="mt-8 text-sm leading-relaxed opacity-60 md:text-base">
             {experience.description}
           </p>
         </div>
@@ -293,11 +292,11 @@ function ExperienceCard({ experience }) {
         </div>
       </div>
 
-      <div className="h-1/2 w-full shrink-0 overflow-hidden md:h-full md:w-[40%]">
+      <div className="h-1/2 w-full shrink-0 overflow-hidden md:h-full md:w-[45%]">
         <img
           src={experience.image}
           alt={experience.company}
-          className="h-full w-full object-cover grayscale transition-[filter,scale] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 hover:grayscale-0"
+          className="block h-full w-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 hover:grayscale-0 md:grayscale"
         />
       </div>
     </article>

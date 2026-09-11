@@ -17,9 +17,15 @@ export default function ProjectsSection() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 flex items-end justify-between md:mb-16">
-          <h2 className="text-5xl font-medium tracking-[-0.05em] md:text-6xl lg:text-7xl">
-            Projects
-          </h2>
+          <div>
+            <p className="mb-3 text-sm tracking-[0.2em] text-neutral-500 uppercase">
+              03
+            </p>
+
+            <h2 className="text-4xl font-semibold tracking-tight md:text-6xl">
+              Projects
+            </h2>
+          </div>
 
           <Link
             href="/projects"
