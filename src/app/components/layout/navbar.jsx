@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
@@ -19,25 +18,39 @@ export default function Navbar() {
   const [active, setActive] = useState("Home");
   const [showNav, setShowNav] = useState(true);
 
+  const lastScrollY = useRef(0);
+
   // =========================================================
   // Show navbar when scrolling up
   // =========================================================
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    lastScrollY.current = window.scrollY;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const previousScrollY = lastScrollY.current;
 
-      if (currentScrollY < 50) {
+      // Jangan sembunyikan navbar ketika mobile menu sedang terbuka
+      if (isOpen) {
         setShowNav(true);
-      } else if (currentScrollY < lastScrollY) {
-        setShowNav(true);
-      } else {
-        setShowNav(false);
-        setIsOpen(false);
+        lastScrollY.current = currentScrollY;
+        return;
       }
 
-      lastScrollY = currentScrollY;
+      // Selalu tampil ketika berada di paling atas
+      if (currentScrollY <= 50) {
+        setShowNav(true);
+      }
+      // Scroll ke atas
+      else if (currentScrollY < previousScrollY) {
+        setShowNav(true);
+      }
+      // Scroll ke bawah
+      else if (currentScrollY > previousScrollY) {
+        setShowNav(false);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, {
@@ -47,7 +60,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isOpen]);
 
   // =========================================================
   // Detect active section
@@ -104,18 +117,13 @@ export default function Navbar() {
   const handleNavigation = (item) => {
     setActive(item.label);
     setIsOpen(false);
+    setShowNav(true);
 
-    // PageTransition akan menangani:
-    // - curtain animation
-    // - page navigation
-    // - section navigation
-    // - hash navigation
     if (window.__pageTransition) {
       window.__pageTransition(item.href);
       return;
     }
 
-    // Fallback jika PageTransition belum tersedia
     if (item.section === "projects") {
       window.location.href = "/projects";
       return;
@@ -124,10 +132,26 @@ export default function Navbar() {
     window.location.href = item.href;
   };
 
+  // =========================================================
+  // Toggle mobile menu
+  // =========================================================
+  const toggleMenu = () => {
+    setIsOpen((prev) => {
+      const next = !prev;
+
+      // Ketika menu dibuka, navbar wajib tetap terlihat
+      if (next) {
+        setShowNav(true);
+      }
+
+      return next;
+    });
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 px-4 transition-transform duration-300 ease-out ${
-        showNav ? "translate-y-0" : "-translate-y-full"
+        showNav || isOpen ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <nav className="mx-auto flex w-full flex-col rounded-2xl p-3 text-[#1e1e1e] shadow-lg shadow-black/5 backdrop-blur-xl md:mt-4 md:w-fit md:min-w-125 md:flex-row md:items-center md:justify-center md:rounded-full md:bg-transparent md:p-1.5 md:shadow-none md:backdrop-blur-md dark:bg-black/50 dark:text-[#f1f1f1] dark:md:bg-transparent">
@@ -135,7 +159,7 @@ export default function Navbar() {
           type="button"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
-          onClick={() => setIsOpen((prev) => !prev)}
+          onClick={toggleMenu}
           className="ml-auto flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 hover:scale-105 hover:bg-black/5 active:scale-95 md:hidden dark:hover:bg-white/10"
         >
           {isOpen ? (
@@ -165,9 +189,9 @@ export default function Navbar() {
                     onClick={() => handleNavigation(item)}
                     className={`group relative rounded-xl border px-4 py-2.5 text-sm font-medium transition-all duration-300 md:rounded-full md:px-4 md:py-2 ${
                       isActive
-                        ? `border-black/20 text-[#1e1e1e] dark:border-white/20 dark:text-[#f1f1f1]`
-                        : `border-transparent hover:border-black/15 hover:text-[#1e1e1e] dark:hover:border-white/15 dark:hover:text-[#f1f1f1]`
-                    } `}
+                        ? "border-black/20 text-[#1e1e1e] dark:border-white/20 dark:text-[#f1f1f1]"
+                        : "border-transparent hover:border-black/15 hover:text-[#1e1e1e] dark:hover:border-white/15 dark:hover:text-[#f1f1f1]"
+                    }`}
                   >
                     {item.label}
 
@@ -176,8 +200,8 @@ export default function Navbar() {
                       className={`absolute bottom-1 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-current transition-all duration-300 ${
                         isActive
                           ? "w-3 opacity-100"
-                          : `w-0 opacity-0 group-hover:w-3 group-hover:opacity-100`
-                      } `}
+                          : "w-0 opacity-0 group-hover:w-3 group-hover:opacity-100"
+                      }`}
                     />
                   </button>
                 );
