@@ -20,11 +20,6 @@ const contactLinks = [
   },
 
   {
-    name: "WhatsApp",
-    href: "https://wa.me/6289678391472",
-    icon: "/icons/whatsapp.svg",
-  },
-  {
     name: "Email",
     href: "mailto:dstmpl17@gmail.com",
     icon: "/icons/gmail.svg",
@@ -129,7 +124,7 @@ export default function Herosection() {
           <CometCard rotateDepth={10} translateDepth={5}>
             <div className="overflow-hidden rounded-3xl md:h-120 md:w-100">
               <img
-                src="/profile.png"
+                src="/profile.webp"
                 alt="Project"
                 className="h-full w-full rotate-y-180 object-cover hover:grayscale-0 md:grayscale-25"
               />
