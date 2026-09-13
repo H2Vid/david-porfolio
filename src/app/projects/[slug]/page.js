@@ -82,6 +82,20 @@ export default async function ProjectDetailPage({ params }) {
           <h1 className="max-w-6xl text-5xl leading-[0.9] font-medium tracking-[-0.055em] text-[#111111] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] dark:text-[#f1f1f1]">
             {project.title}
           </h1>
+          {project.collaboration === "Freelance / White-Label" && (
+            <div className="border-t border-[#111111] px-4 py-3 dark:border-[#f1f1f1]">
+              <p className="text-[10px] leading-relaxed text-neutral-500 md:text-xs dark:text-neutral-400">
+                <span className="font-medium text-red-500">DISCLAIMER:</span>
+                This project is not my personal intellectual property. It was
+                completed under a freelance, white-label arrangement for a
+                digital agency and its client. All rights, ownership, and
+                intellectual property related to the project remain with the
+                respective agency and/or client. This portfolio entry only
+                showcases the work I personally contributed to and does not
+                imply ownership or authorship of the project as a whole.
+              </p>
+            </div>
+          )}
 
           {/* Description */}
           <div className="mt-14 grid gap-8 md:grid-cols-[1fr_2fr] md:items-start">
@@ -109,7 +123,7 @@ export default async function ProjectDetailPage({ params }) {
             <img
               src={project.image}
               alt={project.title}
-              className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              className="aspect-16/10 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
             />
           </div>
         </div>

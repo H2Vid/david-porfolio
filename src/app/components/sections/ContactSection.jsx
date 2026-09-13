@@ -176,15 +176,6 @@ export default function ContactSection() {
               </a>
 
               <a
-                href="https://wa.me/6289678391472"
-                target="_blank"
-                rel="noreferrer"
-                className="transition-colors duration-300 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-950 dark:hover:text-white dark:focus-visible:outline-white"
-              >
-                Whatsapp
-              </a>
-
-              <a
                 href="mailto:dstmpl17@gmail.com"
                 className="transition-colors duration-300 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-950 dark:hover:text-white dark:focus-visible:outline-white"
               >

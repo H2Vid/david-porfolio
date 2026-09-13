@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import gsap from "gsap";
 import { MoveUpRight } from "lucide-react";
+import Image from "next/image";
 
 export default function CardProjects({ project, index }) {
   const cardRef = useRef(null);
@@ -90,6 +91,7 @@ export default function CardProjects({ project, index }) {
         {/* Image */}
         <div className="aspect-4/3 overflow-hidden p-5 md:p-10">
           <img
+            loading="lazy"
             src={project.image}
             alt={project.title}
             className="h-full w-full object-cover grayscale transition-[filter] duration-700 ease-out group-hover:grayscale-0"
