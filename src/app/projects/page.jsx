@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         );
 
   return (
-    <main className="flex w-full flex-col p-20 text-[#111111] dark:text-[#f1f1f1]">
+    <main className="flex w-full flex-col p-4 text-[#111111] md:p-20 dark:text-[#f1f1f1]">
       <div className="mx-auto max-w-7xl">
         {/* Back */}
         <Link

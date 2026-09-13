@@ -41,7 +41,7 @@ export default async function ProjectDetailPage({ params }) {
   const projectNumber = String(projectIndex + 1).padStart(2, "0");
 
   return (
-    <div className="p-20">
+    <div className="p-2 md:p-20">
       {/* =====================================================
           BACK / NAVIGATION
       ====================================================== */}
