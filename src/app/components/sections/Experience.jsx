@@ -194,7 +194,7 @@ export default function Experience() {
 
       {/* Desktop */}
       <div ref={experienceRef} className="relative z-10 hidden md:block">
-        <div ref={trackRef} className="flex w-max gap-6 px-6 md:px-10">
+        <div ref={trackRef} className="flex w-max gap-6 px-6 md:px-30">
           {experiences.map((experience) => (
             <ExperienceCard key={experience.id} experience={experience} />
           ))}
