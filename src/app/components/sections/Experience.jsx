@@ -32,8 +32,8 @@ export default function Experience() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
-        const NAVBAR_HEIGHT = 110;
-        const PROGRESS_GAP = 20;
+        const NAVBAR_HEIGHT = 50;
+        const PROGRESS_GAP = 10;
 
         const getHeaderHeight = () => {
           return header.offsetHeight;
